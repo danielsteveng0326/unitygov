@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'lib/adminlt320/dist/css/adminlte.min.css' %}" >
+    <script src="{% static 'lib/bootstrap533dist/js/bootstrap.bundle.min.js' %}"></script>
+</head>
+<body>
+    <h1>Dashboard Contratación</h1>
+
+    <pre>{{ db_response|safe }}</pre> respuesta de la base de datos
+
+    <pre>{{ list|safe }}</pre>  saber que trae list de la base de datos 
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre Entidad</th>
+                <th>NIT Entidad</th>
+                <th>Fecha Terminacion</th>
+                <th>Objeto</th>
+                <th>Estado Contrato</th>
+                <th>Valor del Contrato</th>
+                <!-- Agrega más encabezados según sea necesario -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for contrato in list %}
+                <tr>
+                    <td>{{ contrato.nombre_entidad }}</td>
+                    <td>{{ contrato.nit_entidad }}</td>
+                    <td>{{ contrato.fecha_de_fin_del_contrato }}</td>
+                    <td>{{ contrato.descripcion_del_proceso }}</td>
+                    <td>{{ contrato.estado_contrato }}</td>
+                    <td>{{ contrato.valor_del_contrato }}</td>
+                    <!-- Agrega más columnas según sea necesario -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+</body>
+</html>
