@@ -1,15 +1,22 @@
 #!/bin/bash
-pwd
-DJANGODIR=$(cd `dirname $0` && pwd)
-pwd
-DJANGO_SETTINGS_MODULE=app.settings
-pwd
-source env/bin/activate
-pwd
-export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
-pwd
-exec python manage.py runserver 0:9000
+set -e  # Detiene la ejecución si hay un error
 
-read -p "Presiona Enter para salir..."
+# Ruta absoluta de la aplicación y el entorno virtual
+APP_DIR="/home/f4lk0n/unitygov/app"
+VENV_DIR="$APP_DIR/env"
 
+cd "$APP_DIR"
+pwd  # Verificar la ubicación actual
+
+# Definir la variable de configuración de Django
+export DJANGO_SETTINGS_MODULE=app.settings
+
+# Activar el entorno virtual con una ruta absoluta
+source "$VENV_DIR/bin/activate"
+
+# Mostrar la ubicación de Python para verificar que está dentro del entorno virtual
+which python
+
+# Ejecutar el servidor Django
+exec python manage.py runserver 0.0.0.0:9000
 
